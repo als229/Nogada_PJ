@@ -1,5 +1,7 @@
 package com.kh.hw.member.controller;
 
+import java.util.Arrays;
+
 import com.kh.hw.member.model.vo.Member;
 
 public class MemberController {
@@ -42,9 +44,9 @@ public class MemberController {
 
 	public String searchId(String id) {
 		String result = "";
-		for (int i = 0; i < m.length; i++) {
+		for (int i = 0; i < existMemberNum(); i++) {
 			if (m[i].getId().equals(id)) {
-				result = m[i] + "";
+				result = m[i].infrom();
 			}
 		}
 		
@@ -52,9 +54,9 @@ public class MemberController {
 	}
 
 	public Member[] searchName(String name) {
-		Member[] result = new Member[10];
+		Member[] result = new Member[existMemberNum()];
 		int count = 0;
-		for (int i = 0; i < m.length; i++) {
+		for (int i = 0; i < existMemberNum(); i++) {
 			if (m[i].getName().equals(name)) {
 				result[count] = m[i];
 				count++;
@@ -64,9 +66,9 @@ public class MemberController {
 	}
 
 	public Member[] searchEmail(String email) {
-		Member[] result = null;
+		Member[] result = new Member[existMemberNum()];
 		int count = 0;
-		for (int i = 0; i < m.length; i++) {
+		for (int i = 0; i < existMemberNum(); i++) {
 			if (m[i].getEmail().equals(email)) {
 				result[count] = m[i];
 				count++;
@@ -83,7 +85,7 @@ public class MemberController {
 				bl = !bl;
 			}
 		}
-
+		System.out.println(bl);
 		return bl;
 	}
 
@@ -103,7 +105,7 @@ public class MemberController {
 
 	public boolean updateEmail(String id, String email) {
 		boolean bl = false;
-		for (int i = 0; i < m.length; i++) {
+		for (int i = 0; i < existMemberNum(); i++) {
 			if (m[i].getId().equals(id)) {
 				m[i].setEmail(email);
 				bl = !bl;

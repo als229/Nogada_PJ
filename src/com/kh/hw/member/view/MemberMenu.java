@@ -1,5 +1,6 @@
 package com.kh.hw.member.view;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 import com.kh.hw.member.controller.MemberController;
@@ -155,7 +156,7 @@ public class MemberMenu {
 
 		System.out.print("검색할 아이디 : ");
 		String id = sc.next();
-		if (mc.searchId(id) == null) {
+		if (mc.searchId(id) == "") {
 			System.out.println("검색결과가 없습니다.");
 			return;
 		} else {
@@ -168,12 +169,14 @@ public class MemberMenu {
 	public void searchName() {
 		System.out.print("검색할 이름 : ");
 		String name = sc.next();
-		if (mc.searchName(name) == null) {
+		if (mc.searchName(name)[0] == null) {
 			System.out.println("검색결과가 없습니다.");
 			return;
 		} else {
 			System.out.println("찾으신 회원 조회 결과입니다.");
-			System.out.println(mc.searchId(name));
+			for(int i = 0; i < mc.searchName(name).length; i++) {
+			System.out.println(mc.searchName(name)[i].infrom());
+			}
 			return;
 		}
 	}
@@ -181,12 +184,14 @@ public class MemberMenu {
 	public void searchEmail() {
 		System.out.print("검색할 이메일 : ");
 		String email = sc.next();
-		if (mc.searchEmail(email) == null) {
+		if (mc.searchEmail(email)[0] == null) {
 			System.out.println("검색결과가 없습니다.");
 			return;
 		} else {
 			System.out.println("찾으신 회원 조회 결과입니다.");
-			System.out.println(mc.searchId(email));
+			for(int i = 0; i <mc.searchEmail(email).length; i++) {
+			System.out.println(mc.searchEmail(email)[i].infrom());
+			}
 			return;
 		}
 	}
@@ -226,10 +231,10 @@ public class MemberMenu {
 		System.out.print("수정할 비밀번호 : ");
 		String password = sc.next();
 		if (mc.updatePassword(id, password)) {
-			System.out.println("존재하지 않는 아이디입니다.");
+			System.out.println("수정이 성공적으로 되었습니다.");
 			return;
 		} else {
-			System.out.println("수정이 성공적으로 되었습니다.");
+			System.out.println("존재하지 않는 아이디입니다.");
 			return;
 		}
 
@@ -241,10 +246,10 @@ public class MemberMenu {
 		System.out.print("수정할 이름 : ");
 		String name = sc.next();
 		if (mc.updateName(id, name)) {
-			System.out.println("존재하지 않는 이름입니다.");
+			System.out.println("수정이 성공적으로 되었습니다.");
 			return;
 		} else {
-			System.out.println("수정이 성공적으로 되었습니다.");
+			System.out.println("존재하지 않는 이름입니다.");
 			return;
 		}
 	}
@@ -255,10 +260,10 @@ public class MemberMenu {
 		System.out.print("수정할 이메일 : ");
 		String email = sc.next();
 		if (mc.updateEmail(id, email)) {
-			System.out.println("존재하지 않는 이름입니다.");
+			System.out.println("수정이 성공적으로 되었습니다.");
 			return;
 		} else {
-			System.out.println("수정이 성공적으로 되었습니다.");
+			System.out.println("존재하지 않는 이름입니다.");
 			return;
 		}
 
